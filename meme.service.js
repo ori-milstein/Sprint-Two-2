@@ -10,7 +10,8 @@ var gMeme = {
     lines: [
         { txt: 'I sometimes eat Falafel', size: 20, color: 'red' },
         { txt: 'I enjoy eating Falafel', size: 20, color: 'red' },
-    ]
+    ],
+    alreadyDownload: false
 }
 
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }

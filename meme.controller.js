@@ -1,8 +1,6 @@
 'use strict'
 
 var positions
-var download
-var alreadyDownload = false
 
 function renderMeme(isLineNew = false, isInit = false, isNoRect = false) {
     const gallery = document.querySelector('.gallery')
@@ -191,7 +189,7 @@ function onDownload() {
 
     renderMeme(false, false, true)
 
-    download = setTimeout(() => {
+    setTimeout(() => {
         console.log('hi')
         const dataUrl = gElCanvas.toDataURL()
         const elLink = document.querySelector('a.download')
@@ -199,9 +197,8 @@ function onDownload() {
 
         elLink.setAttribute('href', dataUrl)
         elLink.setAttribute('download', `${firstLine}.png`)
-        if (!alreadyDownload) document.querySelector('.download').click()
+        if (!getMeme().alreadyDownload) document.querySelector('.download').click()
 
-        clearTimeout(download)
-        alreadyDownload = true
+        getMeme().alreadyDownload = true
     }, 1000)
 }

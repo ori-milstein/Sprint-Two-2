@@ -1,8 +1,10 @@
 'use strict'
 
 var positions
+var download
+var alreadyDownload = false
 
-function renderMeme(isLineNew = false, isInit = false, isDownload = false) {
+function renderMeme(isLineNew = false, isInit = false, isNoRect = false) {
     const gallery = document.querySelector('.gallery')
     const editor = document.querySelector('.editor')
 
@@ -32,7 +34,7 @@ function renderMeme(isLineNew = false, isInit = false, isDownload = false) {
         renderText(isLineNew)
         // renderRects()
 
-        if (!isDownload) renderRect(meme.selectedLineIdx)
+        if (!isNoRect) renderRect(meme.selectedLineIdx)
     })
 }
 function renderText(isLineNew = false) {
@@ -129,6 +131,7 @@ function onRectClick(ev) {
     // =======
     // <<<<<<< HEAD
     if (line) onSwitchLine(getMeme().lines.indexOf(line))
+    else renderMeme(false, false, true)
     // =======
     // onSwitchLine(getMeme().lines.indexOf(line))
     // >>>>>>> faa694be4a018bfc86a4d932920aa6a958d0ca6a
@@ -182,19 +185,23 @@ function onSwitchLine(idx, isLineNew = false) {
 }
 
 function onDownload() {
-    const dataUrl = gElCanvas.toDataURL()
-    const elLink = document.querySelector('a.download')
-    const firstLine = getMeme().lines[0].txt
+    // const dataUrl = gElCanvas.toDataURL()
+    // const elLink = document.querySelector('a.download')
+    // const firstLine = getMeme().lines[0].txt
 
     renderMeme(false, false, true)
 
-    setTimeout(() => {
+    download = setTimeout(() => {
+        console.log('hi')
         const dataUrl = gElCanvas.toDataURL()
         const elLink = document.querySelector('a.download')
         const firstLine = getMeme().lines[0].txt
 
-        elLink.href = dataUrl
-        elLink.download = `${firstLine}.png`
-        document.querySelector('.download').click()
+        elLink.setAttribute('href', dataUrl)
+        elLink.setAttribute('download', `${firstLine}.png`)
+        if (!alreadyDownload) document.querySelector('.download').click()
+
+        clearTimeout(download)
+        alreadyDownload = true
     }, 1000)
 }

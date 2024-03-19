@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Meme Generator</title>
+</head>
+
+<body onload="onInit()">
+    <section class="layout">
+        <div class="header">
+            <a href="#" onclick="renderGallery()">Gallery</a>
+            <a href="#" onclick="renderMeme()">Editor</a>
+        </div>
+        <div class="main">
+            <section class="gallery hidden">
+                <!-- <img src="img/meme-imgs/meme-imgs-square/1.jpg" alt=""> -->
+                <!-- <img src="img/meme-imgs/meme-imgs-square/2.jpg" alt=""> -->
+            </section>
+            <section class="editor">
+                <div class="canvas-container">
+                    <canvas width="400px" height="400px" onclick="onRectClick(event)"></canvas>
+                </div>
+                <form action="" onsubmit="return false">
+                    <label>
+                        Enter text: <input type="text" name="firstLine" oninput="onChangeTxt(this.value)">
+                    </label>
+                    <label>
+                        Choose color: <input type="color" oninput="onChangeColor(this.value)">
+                    </label>
+                    <button type="button" onclick="onChangeFontSize(1)" class="fontSize">A+</button>
+                    <button type="button" onclick="onChangeFontSize(-1)" class="fontSize">A-</button>
+                    <button type="button" onclick="onAddLine()">Add Line</button>
+                    <button type="button" onclick="onSwitchLine()">Switch Line</button>
+                </form>
+
+                <a href="#" class="download"><button onclick="onDownload()">Download</button></a>
+            </section>
+        </div>
+
+        <div class="footer">
+            3
+        </div>
+    </section>
+    <!-- <canvas class="temp hidden"></canvas> -->
+    <script src="meme.service.js"></script>
+    <script src="main.js"></script>
+    <script src="meme.controller.js"></script>
+    <script src="gallery.controller.js"></script>
+</body>
+
+</html>

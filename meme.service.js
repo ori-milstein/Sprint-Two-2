@@ -8,8 +8,8 @@ var gMeme = {
     selectedImgId: 5,
     selectedLineIdx: 0,
     lines: [
-        { txt: 'I sometimes eat Falafel', size: 20, color: 'red' },
-        { txt: 'I enjoy eating Falafel', size: 20, color: 'red' },
+        { txt: 'I sometimes eat Falafel', size: 20, color: '#ff0000' },
+        { txt: 'I enjoy eating Falafel', size: 20, color: '#ff0000' },
     ],
     alreadyDownload: false
 }
@@ -25,7 +25,7 @@ function updatePosition(pos, idx) {
 }
 
 function addLine() {
-    gMeme.lines.push({ txt: 'Enter Text Here', size: 20, color: 'red', pos: {} })
+    gMeme.lines.push({ txt: 'Enter Text Here', size: 20, color: '#ff0000', pos: {} })
     gMeme.selectedLineIdx = gMeme.lines.length - 1
 }
 

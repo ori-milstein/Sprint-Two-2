@@ -173,9 +173,13 @@ function onSwitchLine(idx, isLineNew = false) {
     const elTxtInput = document.querySelector('input[type="text"]')
     const newLineTxt = getMeme().lines[newLineIdx].txt
 
+    const elColor = document.querySelector('input[type="color"]')
+    const newLineColor = getMeme().lines[newLineIdx].color
+
     elTxtInput.value = newLineTxt
     elTxtInput.select()
 
+    elColor.value = newLineColor
     // setLineTxt(lineIdx)
     if (isLineNew) return
     // renderRect(newLineIdx)

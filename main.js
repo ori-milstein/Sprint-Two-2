@@ -32,7 +32,12 @@ function initInputs() {
     const elTxtInput = document.querySelector('input[type="text"]')
     const firstLineTxt = getMeme().lines[0].txt
 
+    const elColor = document.querySelector('input[type="color"]')
+    const firstLineColor = getMeme().lines[0].color
+
     elTxtInput.value = firstLineTxt
+    elColor.value = firstLineColor
+
 }
 
 function onDraw(ev) {

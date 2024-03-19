@@ -55,8 +55,8 @@ function onDraw(ev) {
 }
 
 function drawText(text, x, y) {
-    gCtx.strokeStyle = 'black'
-    gCtx.fillStyle = 'red'
+    // gCtx.strokeStyle = 'black'
+    // gCtx.fillStyle = 'red'
     gCtx.beginPath()
     gCtx.fillText(text, x, y)
     gCtx.strokeText(text, x, y)

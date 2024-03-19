@@ -2,7 +2,7 @@
 
 var positions
 
-function renderMeme(isLineNew = false, isInit = false) {
+function renderMeme(isLineNew = false, isInit = false, isDownload = false) {
     const gallery = document.querySelector('.gallery')
     const editor = document.querySelector('.editor')
 
@@ -20,37 +20,47 @@ function renderMeme(isLineNew = false, isInit = false) {
         // gElCanvas.width = img.width
         // gElCanvas.height = img.height
         coverCanvasWithImg(img)
-        if (isInit) {
-            positions = [{ x: gElCanvas.width / 2, y: 40 }, { x: gElCanvas.width / 2, y: gElCanvas.height - 40 }]
-            positions.forEach((pos, idx) => updatePosition(pos, idx))
-        }
-        gCtx.font = `${meme.lines[0].size}px arial`
-        gCtx.fillStyle = meme.lines[0].color
+        // if (isInit) {
+        positions = [{ x: gElCanvas.width / 2, y: 40 }, { x: gElCanvas.width / 2, y: gElCanvas.height - 40 }]
+        positions.forEach((pos, idx) => updatePosition(pos, idx))
+        // }
+        // gCtx.fillStyle = meme.lines[0].color
         gCtx.textAlign = 'center'
         gCtx.textBaseline = 'middle'
-
+        // drawText(getMeme().lines[0].txt, positions[0].x, positions[0].y)
+        // drawText(getMeme().lines[1].txt, positions[1].x, positions[1].y)
         renderText(isLineNew)
         // renderRects()
-        renderRect(meme.selectedLineIdx)
+
+        if (!isDownload) renderRect(meme.selectedLineIdx)
     })
 }
 function renderText(isLineNew = false) {
     const [firstLine, secondLine, ...rest] = getMeme().lines
 
+    // console.log('gCtx', gCtx)
+
     // gCtx.strokeStyle = getMeme().lines[0].color
-    console.log('gCtx', gCtx)
+    gCtx.fillStyle = getMeme().lines[0].color
+    // console.log('getMeme().lines[0].color', getMeme().lines[0].color)
+    gCtx.font = `${firstLine.size}px arial`
     drawText(firstLine.txt, positions[0].x, positions[0].y)
+    // drawText(firstLine.txt, gElCanvas.width / 2, 40)
 
     // drawRectAround(positions[0], 0)
-    console.log('gCtx', gCtx)
+    // console.log('gCtx', gCtx)
     // gCtx.strokeStyle = getMeme().lines[1].color
-    // gCtx.fillStyle = getMeme().lines[0].color
+    gCtx.fillStyle = getMeme().lines[1].color
+    gCtx.font = `${secondLine.size}px arial`
     drawText(secondLine.txt, positions[1].x, positions[1].y)
+    // drawText(secondLine.txt, gElCanvas.width / 2, gElCanvas.height - 40)
     // drawRectAround(positions[1], 1)
 
     rest.forEach((line, idx) => {
         // gCtx.strokeStyle = line.color
-        drawText(line.txt, positions[idx + 2].x, positions[idx + 2].y)
+        gCtx.fillStyle = line.color
+        gCtx.font = `${line.size}px arial`
+        drawText(line.txt, line.pos.x, line.pos.y)
         // drawRectAround(pos)
     })
 
@@ -67,18 +77,21 @@ function renderRects() {
 
 function renderRect(idx) {
 
-    drawRectAround(positions[idx], idx)
+    drawRectAround(getMeme().lines[idx].pos, idx)
 
 }
 
 function drawRectAround(pos, idx) {
+    const size = getMeme().lines[getMeme().selectedLineIdx].size + ''
+
+    gCtx.font = size + "px arial"
     const textMetrics = gCtx.measureText(getMeme().lines[idx].txt)
     const width = textMetrics.width
-    const realWidth = textMetrics.actualBoundingBoxRight + textMetrics.actualBoundingBoxLeft
+    // const realWidth = textMetrics.actualBoundingBoxRight + textMetrics.actualBoundingBoxLeft
     const height = textMetrics.actualBoundingBoxAscent
 
     console.log(textMetrics)
-    console.log(realWidth)
+    // console.log(realWidth)
     // gCtx.beginPath()
     drawRect(pos.x - width / 2 - 10, pos.y - height - 10, width + 20, height * 2 + 20)
     // gCtx.closePath()
@@ -112,12 +125,12 @@ function onRectClick(ev) {
     })
 
     // <<<<<<< HEAD
-    if (line) onSwitchLine(getMeme().lines.indexOf(line))
+    // if (line) onSwitchLine(getMeme().lines.indexOf(line))
     // =======
     // <<<<<<< HEAD
     if (line) onSwitchLine(getMeme().lines.indexOf(line))
     // =======
-    onSwitchLine(getMeme().lines.indexOf(line))
+    // onSwitchLine(getMeme().lines.indexOf(line))
     // >>>>>>> faa694be4a018bfc86a4d932920aa6a958d0ca6a
     // >>>>>>> e7ff6d0c329243ae73195b6bf287bce89565883f
 }
@@ -128,13 +141,21 @@ function onChangeTxt(val) {
     renderMeme()
 }
 
-function onChangeColor(val) {
-    setLineColor(val)
+function onChangeColor(val, idx = getMeme().selectedLineIdx) {
+    setLineColor(val, idx)
+    gCtx.fillStyle = val
+    console.log('gCtx', gCtx)
     renderMeme()
 }
 
 function onChangeFontSize(dir) {
     setFontSize(dir)
+    console.log('getMeme().lines[getMeme().selectedLineIdx].size', getMeme().lines[getMeme().selectedLineIdx].size)
+    const size = getMeme().lines[getMeme().selectedLineIdx].size + ''
+
+    gCtx.font = size + "px arial"
+    console.log('gCtx.font', gCtx.font)
+
     renderMeme()
 }
 
@@ -142,19 +163,21 @@ function onAddLine() {
     const isLineNew = true
     positions.push({ x: gElCanvas.width / 2, y: gElCanvas.height / 2 })
     addLine()
-    updatePosition(positions[positions.length - 1], positions.length - 1)
+    updatePosition({ x: gElCanvas.width / 2, y: gElCanvas.height / 2 }, getMeme().lines.length - 1)
     renderMeme(isLineNew)
 }
 
 function onSwitchLine(idx, isLineNew = false) {
-
     const newLineIdx = switchLine(idx)
     const elTxtInput = document.querySelector('input[type="text"]')
     const newLineTxt = getMeme().lines[newLineIdx].txt
 
     elTxtInput.value = newLineTxt
+    elTxtInput.select()
+
     // setLineTxt(lineIdx)
     if (isLineNew) return
+    // renderRect(newLineIdx)
     renderMeme()
 }
 
@@ -163,6 +186,15 @@ function onDownload() {
     const elLink = document.querySelector('a.download')
     const firstLine = getMeme().lines[0].txt
 
-    elLink.href = dataUrl
-    elLink.download = `${firstLine}.png`
+    renderMeme(false, false, true)
+
+    setTimeout(() => {
+        const dataUrl = gElCanvas.toDataURL()
+        const elLink = document.querySelector('a.download')
+        const firstLine = getMeme().lines[0].txt
+
+        elLink.href = dataUrl
+        elLink.download = `${firstLine}.png`
+        document.querySelector('.download').click()
+    }, 1000)
 }

@@ -12,6 +12,7 @@ var gMeme = {
         { txt: 'I enjoy eating Falafel', size: 20, color: 'red' },
     ]
 }
+
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
 function getMeme() {
@@ -23,7 +24,7 @@ function updatePosition(pos, idx) {
 }
 
 function addLine() {
-    gMeme.lines.push({ txt: 'Enter Text Here', size: 20, color: 'red' })
+    gMeme.lines.push({ txt: 'Enter Text Here', size: 20, color: 'red', pos: {} })
     gMeme.selectedLineIdx = gMeme.lines.length - 1
 }
 
@@ -39,23 +40,25 @@ function setLineTxt(txt, lineIdx = 0) {
 }
 
 function switchLine(idx) {
-    console.log('idx', idx)
+    // console.log('idx', idx)
     var { selectedLineIdx, lines } = gMeme
-    console.log('selectedLineIdx', selectedLineIdx)
-    console.log('lines.length', lines.length)
+    // console.log('selectedLineIdx', selectedLineIdx)
+    // console.log('lines.length', lines.length)
 
     gMeme.selectedLineIdx = (idx === undefined) ? (selectedLineIdx === lines.length - 1) ? 0 : ++gMeme.selectedLineIdx : idx
 
-    console.log('selectedLineIdx', gMeme.selectedLineIdx)
+    // console.log('selectedLineIdx', gMeme.selectedLineIdx)
+    // gCtx.font = `${lines[selectedLineIdx].size}px arial`
     return gMeme.selectedLineIdx
 }
 
-function setLineColor(color, lineIdx = 0) {
+function setLineColor(color, lineIdx = gMeme.selectedLineIdx) {
     gMeme.lines[lineIdx].color = color
 }
 
 function setFontSize(dir) {
-    gMeme.lines.forEach(line => line.size += dir * 5)
+    gMeme.lines[gMeme.selectedLineIdx].size += dir * 2.5
+    // gMeme.lines.forEach(line => line.size += dir * 5)
 }
 
 function setImg(id) {

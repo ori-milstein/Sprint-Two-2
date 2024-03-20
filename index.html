@@ -4,16 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="style/styles.css">
     <title>Meme Generator</title>
 </head>
 
 <body onload="onInit()">
     <section class="layout">
-        <div class="header">
-            <a href="#" onclick="renderGallery()">Gallery</a>
-            <a href="#" onclick="renderMeme()">Editor</a>
-        </div>
+        <header class="header">
+            <span>Meme Generator</span>
+            <ul>
+                <li><a href="#" onclick="renderGallery()">Gallery</a></li>
+                <li><a href="#" onclick="renderGallery()">Saved</a></li>
+                <li><a href="#" onclick="renderMeme()">Randomize</a></li>
+            </ul>
+        </header>
+
         <div class="main">
             <section class="gallery hidden">
                 <!-- <img src="img/meme-imgs/meme-imgs-square/1.jpg" alt=""> -->
@@ -23,26 +28,38 @@
                 <div class="canvas-container">
                     <canvas width="400px" height="400px" onclick="onRectClick(event)"></canvas>
                 </div>
-                <form action="" onsubmit="return false">
-                    <label>
-                        Enter text: <input type="text" name="firstLine" oninput="onChangeTxt(this.value)">
-                    </label>
-                    <label>
-                        Choose color: <input type="color" oninput="onChangeColor(this.value)">
-                    </label>
-                    <button type="button" onclick="onChangeFontSize(1)" class="fontSize">A+</button>
-                    <button type="button" onclick="onChangeFontSize(-1)" class="fontSize">A-</button>
-                    <button type="button" onclick="onAddLine()">Add Line</button>
-                    <button type="button" onclick="onSwitchLine()">Switch Line</button>
-                </form>
+                <div class="buttons">
+                    <form action="" onsubmit="return false">
+                        <label>
+                            Enter text: <input type="text" name="firstLine" oninput="onChangeTxt(this.value)">
+                        </label>
 
-                <a href="#" class="download"><button onclick="onDownload()">Download</button></a>
+                        <button type="button" onclick="onSwitchLine()" class="fa switch">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="arrows"
+                                viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                <path
+                                    d="M438.6 150.6c12.5-12.5 12.5-32.8 0-45.3l-96-96c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.7 96 32 96C14.3 96 0 110.3 0 128s14.3 32 32 32l306.7 0-41.4 41.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l96-96zm-333.3 352c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 416 416 416c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0 41.4-41.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-96 96c-12.5 12.5-12.5 32.8 0 45.3l96 96z" />
+                            </svg>
+                        </button>
+                        <button type="button" onclick="onAddLine()">Add Line</button>
+                        <button type="button">Delete</button>
+
+                        <label>
+                            Choose color: <input type="color" oninput="onChangeColor(this.value)">
+                        </label>
+                        <button type="button" onclick="onChangeFontSize(1)" class="fontSize">A+</button>
+                        <button type="button" onclick="onChangeFontSize(-1)" class="fontSize">A-</button>
+
+                    </form>
+
+                    <a href="#" class="download"><button onclick="onDownload()">Download</button></a>
+                </div>
             </section>
         </div>
 
-        <div class="footer">
+        <!-- <div class="footer">
             3
-        </div>
+        </div> -->
     </section>
     <!-- <canvas class="temp hidden"></canvas> -->
     <script src="meme.service.js"></script>

@@ -1,0 +1,156 @@
+* {
+    box-sizing: border-box;
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+
+    /* background-color: RGBA(62, 75, 104, 1); */
+}
+
+body {
+    font-family: schulvokal;
+    background-color: RGBA(34, 37, 44, 1);
+    background-color: #22252c;
+}
+
+.layout {
+    /* width: 1366px; */
+    /* height: 768px; */
+    margin-top: 15px;
+    display: grid;
+    grid:
+        "header" 80px "main" 1fr;
+    /* gap: 18px; */
+}
+
+header {
+    grid-area: header;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    border-radius: 40px;
+    margin-inline: 5px;
+    margin-bottom: 18px;
+    padding-inline: calc((90 / 1260) * calc(100vw - 10px));
+    background-color: rgb(48, 187, 114);
+    background: linear-gradient(246deg, rgba(48, 187, 114, 1) 0%, rgba(16, 146, 170, 1) 100%);
+    font-family: schulvokal;
+}
+
+header ul {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(3, 120px);
+    align-items: center;
+}
+
+header li {
+    list-style: none;
+
+}
+
+header li a {
+    text-decoration: none;
+    font-size: 1.3em;
+    color: aliceblue;
+
+}
+
+header li a:hover {
+    color: white;
+    /* color: transparent; */
+    opacity: 0.7;
+}
+
+header span {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.main {
+    margin-inline: 16px;
+}
+
+.editor {
+    grid-area: main;
+    /* display: flex; */
+    /* flex-direction: column;  */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* justify-content: center; */
+    /* align-items: center; */
+    gap: 90px;
+
+}
+
+
+.canvas-container {
+    /* width: 80vw; */
+}
+
+canvas {
+    background-color: darkgray;
+    /* background-image: url(img/meme-imgs/meme-imgs-square/9.jpg); */
+}
+
+.buttons {
+    background-color: #383b42;
+    display: grid;
+    grid-auto-flow: row;
+}
+
+input[type="text"] {
+    display: block;
+    font-size: 1.7em;
+    outline: none;
+    /* border: 2px solid gray; */
+    border-radius: 40px;
+    padding-block: 20px;
+    padding-inline: 40px;
+    text-align: center;
+}
+
+input[type="text"]:checked {
+    /* outline: 3px solid limegreen; */
+}
+
+.arrows {
+
+    width: 2em;
+    height: 2em;
+    vertical-align: -0.125em;
+
+}
+
+
+/* .fa::before {
+    font-family: fa;
+} */
+
+
+/* .fa.switch::before {
+    content: "a";
+} */
+
+.gallery {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.gallery img {
+    height: 200px;
+}
+
+button {
+    display: inline;
+    max-width: max-content;
+}
+
+.hidden {
+    display: none;
+}

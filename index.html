@@ -35,20 +35,20 @@
                             <input type="text" name="firstLine" oninput="onChangeTxt(this.value)">
                         </label>
                         <div class="main-buttons">
-                            <div class="button switch" onclick="onSwitchLine()" tabindex="0">
+                            <div role="button" class="button switch" onclick="onSwitchLine()" tabindex="0">
                                 <img src="Fonts/arrow-right-arrow-left-solid.svg" alt="" class="arrows">
                             </div>
-                            <div class="button add" onclick="onAddLine()" tabindex="0">
+                            <div role="button" class="button add" onclick="onAddLine()" tabindex="0">
                                 <img src="Fonts/plus-solid.svg" alt="" class="plus">
                             </div>
-                            <div class="button delete" tabindex="0">
+                            <div role="button" class="button delete" tabindex="0">
                                 <img src="Fonts/trash-solid.svg" alt="" class="trash">
                             </div>
                         </div>
 
                         <div class="secondary-btns">
                             <label>
-                                <div class="button choose-color" tabindex="0">
+                                <div role="button" class="button choose-color" tabindex="0">
                                     <svg class="pallete" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                                         <path
@@ -58,12 +58,14 @@
                                     <input type="color" oninput="onChangeColor(this.value)">
                                 </div>
                             </label>
-                            <div class="button fontSize" onclick="onChangeFontSize(1)" tabindex="0">A+</div>
-                            <div class="button fontSize" onclick="onChangeFontSize(-1)" tabindex="0">A-</div>
+                            <div role="button" class="button fontSize" onclick="onChangeFontSize(1)" tabindex="0">A+
+                            </div>
+                            <div role="button" class="button fontSize" onclick="onChangeFontSize(-1)" tabindex="0">A-
+                            </div>
                         </div>
                     </form>
 
-                    <div class="button download" onclick="onDownload()">
+                    <div role="button" class="button download" onclick="onDownload()">
                         <a href="#" class="dlink" tabindex="0">
                             Download
                         </a>

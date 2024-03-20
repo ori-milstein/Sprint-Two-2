@@ -117,14 +117,50 @@ input[type="text"]:checked {
     /* outline: 3px solid limegreen; */
 }
 
-.arrows {
+.button {
+    /* display: inline; */
+    width: fit-content;
+    padding: 10px;
+    border-radius: 6px;
+}
 
+.switch {
+    background-color: #33abc9;
+}
+
+.arrows {
+    rotate: 90deg;
     width: 2em;
     height: 2em;
     vertical-align: -0.125em;
-
 }
 
+.add {
+    background-color: #3bc750;
+}
+
+.plus {
+    width: 2em;
+    height: 2em;
+    vertical-align: -0.125em;
+}
+
+.delete {
+    background-color: #e33c36;
+}
+
+.trash {
+    width: 2em;
+    height: 2em;
+    vertical-align: -0.125em;
+}
+
+input[type="color"] {
+    /* appearance: auto; */
+    /* border-color: white; */
+    /* height: 0; */
+    display: none;
+}
 
 /* .fa::before {
     font-family: fa;

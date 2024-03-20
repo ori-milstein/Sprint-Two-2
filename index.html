@@ -31,7 +31,7 @@
                 <div class="buttons">
                     <form action="" onsubmit="return false">
                         <label>
-                            Enter text: <input type="text" name="firstLine" oninput="onChangeTxt(this.value)">
+                            <input type="text" name="firstLine" oninput="onChangeTxt(this.value)">
                         </label>
 
                         <div class="button switch" onclick="onSwitchLine()">
@@ -46,16 +46,20 @@
 
                         <label>
                             <div class="button choose-color">
-                                <img src="Fonts/palette-solid.svg" alt="">
+                                <img src="Fonts/palette-solid.svg" alt="" class="pallete">
                                 <input type="color" oninput="onChangeColor(this.value)">
                             </div>
                         </label>
-                        <button type="button" onclick="onChangeFontSize(1)" class="fontSize">A+</button>
-                        <button type="button" onclick="onChangeFontSize(-1)" class="fontSize">A-</button>
+                        <div class="button fontSize" onclick="onChangeFontSize(1)">A+</div>
+                        <div class="button fontSize" onclick="onChangeFontSize(-1)">A-</div>
 
                     </form>
 
-                    <a href="#" class="download"><button onclick="onDownload()">Download</button></a>
+                    <div class="button download" onclick="onDownload()">
+                        <a href="#" class="dlink">
+                            Download
+                        </a>
+                    </div>
                 </div>
             </section>
         </div>

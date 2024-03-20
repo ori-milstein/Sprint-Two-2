@@ -155,6 +155,17 @@ input[type="text"]:checked {
     vertical-align: -0.125em;
 }
 
+.choose-color {
+    background-color: lightgray;
+}
+
+.pallete {
+    width: 2em;
+    height: 2em;
+    vertical-align: -0.125em;
+}
+
+
 input[type="color"] {
     /* appearance: auto; */
     /* border-color: white; */
@@ -162,14 +173,26 @@ input[type="color"] {
     display: none;
 }
 
-/* .fa::before {
-    font-family: fa;
-} */
+.fontSize {
+    background-color: lightgray;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    font-size: 1.5em;
+    width: 53px;
+    height: 53px;
+}
 
+.download {
+    height: fit-content;
+    font-size: 1.4em;
+    background-color: #8f44bb;
+}
 
-/* .fa.switch::before {
-    content: "a";
-} */
+.dlink {
+    color: white;
+    text-decoration: none;
+}
 
 .gallery {
     display: flex;
@@ -182,10 +205,10 @@ input[type="color"] {
     height: 200px;
 }
 
-button {
+/* button {
     display: inline;
     max-width: max-content;
-}
+} */
 
 .hidden {
     display: none;

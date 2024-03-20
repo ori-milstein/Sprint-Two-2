@@ -146,7 +146,7 @@ input[type="text"]:checked {
 }
 
 
-.main-buttons .button {
+.main-buttons .btn {
     /* display: inline; */
     width: fit-content;
     padding-inline: 10px;
@@ -154,7 +154,7 @@ input[type="text"]:checked {
     border-radius: 6px;
 }
 
-.button {
+.btn {
     /* display: inline; */
     width: fit-content;
     padding: 10px;
@@ -162,7 +162,7 @@ input[type="text"]:checked {
     border-radius: 6px;
 }
 
-.button:hover {
+.btn:hover {
     cursor: pointer;
     opacity: 0.8;
 }
@@ -272,7 +272,7 @@ input[type="color"] {
     height: 200px;
 }
 
-/* button {
+/* btn {
     display: inline;
     max-width: max-content;
 } */

@@ -35,9 +35,11 @@ function initInputs() {
     const elColor = document.querySelector('input[type="color"]')
     const firstLineColor = getMeme().lines[0].color
 
+    const svgPath = document.querySelector('path')
+
     elTxtInput.value = firstLineTxt
     elColor.value = firstLineColor
-
+    svgPath.setAttribute('fill', `${firstLineColor}`)
 }
 
 function onDraw(ev) {

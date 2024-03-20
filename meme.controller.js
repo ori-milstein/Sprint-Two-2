@@ -143,9 +143,13 @@ function onChangeTxt(val) {
 }
 
 function onChangeColor(val, idx = getMeme().selectedLineIdx) {
+    const svgPath = document.querySelector('path')
+
     setLineColor(val, idx)
     gCtx.fillStyle = val
     console.log('gCtx', gCtx)
+    svgPath.setAttribute('fill', `${val}`)
+
     renderMeme()
 }
 
@@ -175,11 +179,14 @@ function onSwitchLine(idx, isLineNew = false) {
 
     const elColor = document.querySelector('input[type="color"]')
     const newLineColor = getMeme().lines[newLineIdx].color
+    const svgPath = document.querySelector('path')
+
 
     elTxtInput.value = newLineTxt
     elTxtInput.select()
 
     elColor.value = newLineColor
+    svgPath.setAttribute('fill', `${newLineColor}`)
     // setLineTxt(lineIdx)
     if (isLineNew) return
     // renderRect(newLineIdx)

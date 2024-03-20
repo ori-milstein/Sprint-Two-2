@@ -180,10 +180,11 @@ function onSwitchLine(idx, isLineNew = false) {
     const elColor = document.querySelector('input[type="color"]')
     const newLineColor = getMeme().lines[newLineIdx].color
     const svgPath = document.querySelector('path')
+    const mq = window.matchMedia("(min-width: 768px)");
 
 
     elTxtInput.value = newLineTxt
-    elTxtInput.select()
+    if (mq.matches) elTxtInput.select()
 
     elColor.value = newLineColor
     svgPath.setAttribute('fill', `${newLineColor}`)
